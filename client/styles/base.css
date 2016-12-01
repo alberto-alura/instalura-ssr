@@ -1,16 +1,16 @@
-body {
+:global body {
   padding-top: 7vh;
   background: #fafafa;
 }
 
 
-.container {
+:global .container {
   padding: 0 10%;
 }
 
 /****/
 
-.header {
+:global .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +24,7 @@ body {
   backface-visibility: hidden;
 }
 
-.header-logo {
+:global  .header-logo {
   background: url(../imgs/logo-instalura.svg) no-repeat left;
   height: 1em;
   padding-left: 1.5em;
@@ -33,11 +33,11 @@ body {
   transition: .4s;
 }
 
-.header-logo:hover{
+:global .header-logo:hover{
   filter: hue-rotate(0);
 }
 
-.header-busca-campo {
+:global .header-busca-campo {
   padding: .5em;
   margin-left: 1em;
   background: #fafafa;
@@ -45,13 +45,13 @@ body {
   color: #262626;
 }
 
-.header-busca-campo:focus {
+:global .header-busca-campo:focus {
   background: #fff;
   outline: 1px solid #ccc;
   color: #222;
 }
 
-.header-busca-submit {
+:global .header-busca-submit {
   border: 0;
   background: url(../imgs/busca-icone.png) center center no-repeat #069;
   text-indent: -9999px;
@@ -63,28 +63,28 @@ body {
   transition: .4s;
 }
 
-.header-busca-submit:hover {
+:global .header-busca-submit:hover {
   background-color: #5ad4c9;
 }
 
-.header-nav {
+:global .header-nav {
   list-style: none
 }
 
-.header-nav-item a {
+:global .header-nav-item a {
   text-decoration: none;
   color: #069;
   font-size: 3em;
 }    
 
-.header-nav-item a:hover{
+:global .header-nav-item a:hover{
   color: #5ad4c9;
 }
 
 /*******/
 
 
-.foto {
+:global .foto {
   background-color: #fff;
   border: 1px solid #efefef;
   border-radius: 3px;
@@ -93,7 +93,7 @@ body {
   
 }
 
-.foto-header {
+:global .foto-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -101,7 +101,7 @@ body {
 }
 
 
-.foto-usuario {
+:global .foto-usuario {
   display: flex;
   align-items: center;
   width: 10%;
@@ -109,53 +109,53 @@ body {
   font-weight: bold;
 }
 
-.foto-usuario a {
+:global .foto-usuario a {
   text-decoration: none;
   color: #069;
 }
 
-.foto-usuario img{
+:global .foto-usuario img{
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: .7em;
 }
 
-.foto-data {
+:global .foto-data {
   color: #999;
 }
 
-.foto-src {
+:global .foto-src {
   max-width: 100%;
 }
 
 /*****/
 
 
-.foto-info {
+:global .foto-info {
   padding: 1em;
 }
 
-.foto-info-likes {
+:global .foto-info-likes {
   list-style: none;
 }
 
-.foto-info-likes a {
+:global .foto-info-likes a {
   text-decoration: none;
   color: #069;
   font-weight: bold;
 }
 
-.foto-info-likes li {
+:global .foto-info-likes li {
   display: inline-block;
 }
 
-.foto-info-autor {
+:global .foto-info-autor {
   font-weight: bold;
 }
 
 
-.foto-info-comentarios {
+:global .foto-info-comentarios {
   list-style: none;
   padding: 0;
   line-height: 1.2;
@@ -163,19 +163,19 @@ body {
   padding-bottom: 1em;
 }
 
-.comentario {
+:global .comentario {
   margin-bottom: .6em;
 }
 
 
 /*****/
 
-.fotoAtualizacoes {
+:global .fotoAtualizacoes {
   display: flex;
   padding: 0 1em 1em 1em;
 }
 
-.fotoAtualizacoes-like {
+:global .fotoAtualizacoes-like {
   background: url(../imgs/s2.png) no-repeat center center;
   background-size: 32px 32px;
   width: 44px;
@@ -186,7 +186,7 @@ body {
   margin-right: 1em;
 }
 
-.fotoAtualizacoes-like-ativo {
+:global .fotoAtualizacoes-like-ativo {
   background: url(../imgs/s2-check.png) no-repeat center center;
   background-size: 32px 32px;
   width: 44px;
@@ -197,39 +197,39 @@ body {
   margin-right: 1em;
 }
 
-.fotoAtualizacoes-form {
+:global .fotoAtualizacoes-form {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-.fotoAtualizacoes-form-campo {
+:global .fotoAtualizacoes-form-campo {
   border: 0;
   outline: 0;
   width: 60%;
 }
 
-.fotoAtualizacoes-form-submit {
+:global .fotoAtualizacoes-form-submit {
   border: 0;
   background-color: #069;
   color: #fff;
   height: 2.4em;
 }
 
-.timeline-enter {
+:global .timeline-enter {
   opacity: 0.01;
 }
 
-.timeline-enter.timeline-enter-active {
+:global .timeline-enter.timeline-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
 }
 
-.timeline-leave {
+:global .timeline-leave {
   opacity: 1;
 }
 
-.timeline-leave.timeline-leave-active {
+:global .timeline-leave.timeline-leave-active {
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }      

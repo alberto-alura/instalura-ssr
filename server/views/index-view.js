@@ -9,10 +9,7 @@ import rootReducer from "../../client/reducers";
 import Promise from "bluebird";
 
 function createReduxStore(req, match) { // eslint-disable-line
-  const initialState = {
-    checkBox: {checked: false},
-    number: {value: 999}
-  };
+  const initialState = {};
 
   const store = createStore(rootReducer, initialState);
   return Promise.resolve(store);

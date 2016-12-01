@@ -6,7 +6,7 @@ import React from "react";
 import {render} from "react-dom";
 import {routes} from "./routes";
 import {Router,browserHistory} from "react-router";
-import { createStore,applyMiddleware,combineReducers} from 'redux';
+import { createStore,applyMiddleware} from 'redux';
 import {Provider} from "react-redux";
 import thunkMiddleware from 'redux-thunk'
 import './styles/reset.css';

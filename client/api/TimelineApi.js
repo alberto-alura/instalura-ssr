@@ -1,4 +1,5 @@
 import {listagem,like,comentario,notifica,notificaFinalizado} from '../actions/actionCreator'
+import 'isomorphic-fetch';
 
 export default class TimelineApi {
 
@@ -8,7 +9,7 @@ export default class TimelineApi {
 
 	static lista(urlTimeline){
 		return (dispatch) => { 
-			return fetch(urlTimeline)
+			return fetch(urlTimeline,{credentials: 'include'})
 				.then(response => {
 					return response.json();
 				})
@@ -21,7 +22,7 @@ export default class TimelineApi {
 
     static like(fotoId,likeada) {
 		return (dispatch) => {
-			return fetch(`http://localhost:8080/api/fotos/${fotoId}/like?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`,{method:'POST'})
+			return fetch(`http://localhost:8080/api/fotos/${fotoId}/like?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`,{method:'POST',credentials: 'include'})
 				.then(response => {
 					if(response.ok){
 						return response.json();											
@@ -42,7 +43,8 @@ export default class TimelineApi {
 			body:JSON.stringify({texto}),
 			headers: new Headers({
 				'Content-Type':'application/json'	
-			})			
+			}),
+			credentials: 'include'					
 		};
 		return (dispatch) => {
 			return fetch(`http://localhost:8080/api/fotos/${fotoId}/comment?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`,requestInfo)
@@ -62,7 +64,7 @@ export default class TimelineApi {
 	static pesquisa(login) {		
 		return (dispatch) => {
 			dispatch(notifica("pesquisando"));
-			return fetch(`http://localhost:8080/api/public/fotos/${login}`)
+			return fetch(`http://localhost:8080/api/public/fotos/${login}`,{credentials: 'include'})
 			.then(response => {
 				return response.json();
 			})

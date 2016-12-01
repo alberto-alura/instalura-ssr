@@ -3,6 +3,7 @@ import FotoItem from './FotoItem';
 import ReactCSSTransitionGroup  from 'react/lib/ReactCSSTransitionGroup';
 import TimelineApi from '../api/TimelineApi';
 import { connect } from 'react-redux'
+import authToken from '../helpers/authToken';
 
 class Timeline extends Component {
 	
@@ -12,7 +13,7 @@ class Timeline extends Component {
 		this.login = props.login;
 		let urlTimeline;
 		if(props.login === undefined) {
-			urlTimeline = `http://localhost:8080/api/fotos?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`;
+			urlTimeline = `http://localhost:8080/api/fotos?X-AUTH-TOKEN=${authToken()}`;
 		} else {
 			urlTimeline = `http://localhost:8080/api/public/fotos/${props.login}`;
 		}	
@@ -20,8 +21,10 @@ class Timeline extends Component {
 		this.urlTimeline = urlTimeline;														 		
 	}	
 
-	componentDidMount(){			
-		this.props.lista(this.urlTimeline);
+	componentDidMount(){					
+		if(this.props.fotos.length == 0) {		
+			this.props.lista(this.urlTimeline);
+		}
 	}
 
 	componentWillReceiveProps(nextProps){				
@@ -32,7 +35,8 @@ class Timeline extends Component {
 		}
 	}
 
-	render(){		
+	render(){				
+			console.log("render");	
         return (<div className="fotos container">
 			<ReactCSSTransitionGroup 
 			transitionName="timeline"

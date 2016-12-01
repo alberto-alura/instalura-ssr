@@ -4,15 +4,27 @@
 
 import ReduxRouterEngine from "electrode-redux-router-engine";
 import {routes} from "../../client/routes";
-import {createStore} from "redux";
+import { createStore,applyMiddleware} from 'redux';
+import thunkMiddleware from 'redux-thunk'
 import rootReducer from "../../client/reducers";
-import Promise from "bluebird";
+import TimelineApi from "../../client/api/TimelineApi";
+import authToken from '../../client/helpers/authToken';
 
-function createReduxStore(req, match) { // eslint-disable-line
-  const initialState = {};
+function createReduxStore(req, match) { // eslint-disable-line    
+    const initialState = {
+        listaFotos: [],
+        notificacao: ""
+    };
 
-  const store = createStore(rootReducer, initialState);
-  return Promise.resolve(store);
+    const store = createStore(rootReducer, initialState,applyMiddleware(thunkMiddleware));
+
+    if(match.renderProps.params.login){
+        const funcaoCarregaTimelinePublica = TimelineApi.lista(`http://localhost:8080/api/public/fotos/'${match.renderProps.params.login}`);          
+        return store.dispatch(funcaoCarregaTimelinePublica).then(() => store);            
+    } else {            
+        const funcaoCarregaTimelineLogado = TimelineApi.lista(`http://localhost:8080/api/fotos?X-AUTH-TOKEN=${authToken(req)}`);    
+        return store.dispatch(funcaoCarregaTimelineLogado).then(() => store);               
+    }               
 }
 
 //
@@ -26,15 +38,9 @@ function createReduxStore(req, match) { // eslint-disable-line
 //
 
 module.exports = (req) => {
-  try{
-    const app = req.server && req.server.app || req.app;
-    if (!app.routesEngine) {
+    const app = req.server && req.server.app || req.app;    
+    if (!app.routesEngine) {      
       app.routesEngine = new ReduxRouterEngine({routes, createReduxStore});
-    }
-
+    }    
     return app.routesEngine.render(req);
-  } catch(e) {
-    console.log(e);
-    throw e;
-  }
 };

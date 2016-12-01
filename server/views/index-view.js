@@ -26,10 +26,15 @@ function createReduxStore(req, match) { // eslint-disable-line
 //
 
 module.exports = (req) => {
-  const app = req.server && req.server.app || req.app;
-  if (!app.routesEngine) {
-    app.routesEngine = new ReduxRouterEngine({routes, createReduxStore});
-  }
+  try{
+    const app = req.server && req.server.app || req.app;
+    if (!app.routesEngine) {
+      app.routesEngine = new ReduxRouterEngine({routes, createReduxStore});
+    }
 
-  return app.routesEngine.render(req);
+    return app.routesEngine.render(req);
+  } catch(e) {
+    console.log(e);
+    throw e;
+  }
 };
